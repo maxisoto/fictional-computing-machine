@@ -33,6 +33,7 @@ class UsuarioController:
     @classmethod
     def show_profile(cls):
         username = session.get('user')
+        print(username)
         user = Usuario.get_user(Usuario(user = username))
         if user is None:
             return {"message": "Usuario no encontrado"}, 404

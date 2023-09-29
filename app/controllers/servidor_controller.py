@@ -14,9 +14,9 @@ class ServidorController:
         return servidores, 200
     
     @classmethod
-    def buscar_servidor_nombre(cls,nombre):
+    def buscar_servidor_id(cls,id_server):
         """Metodo para buscar un servidor por un nombre"""
-        result = Servidor.buscar_serv_nombre(nombre)
+        result = Servidor.buscar_serv_id(id_server)
         if result is not None:
             return result.serialize(), 200
 
@@ -28,6 +28,7 @@ class ServidorController:
         for server in server_objects:
             servidores.append(server.serialize())
         return servidores, 200
+    
 
     @classmethod
     def crear_servidor(cls,id_user):
@@ -35,11 +36,12 @@ class ServidorController:
         data = request.json
 
         if 'nombre' not in data:
-            raise InvalidDataError(400,'Invalid Data Error','El nombre del Servidor es obligatorio, Debe ingresarlo !!!')
+            #raise InvalidDataError(400,'Invalid Data Error','El nombre del Servidor es obligatorio, Debe ingresarlo !!!')
+            return {'message': f'Debe especificar un nombre de Servidor'}, 200
         
         nuevo_servidor = Servidor(
             nombre = data.get('nombre'),
-            descripcion = data.get('descripcion'),
+            descripcion = data.get('servidor'),
             f_creacion = data.get('f_creacion'),
             activo = data.get('activo'),
             icono = data. get('icono')
