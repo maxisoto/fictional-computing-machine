@@ -6,7 +6,7 @@ usuario_bp = Blueprint('usuario_bp', __name__)
 
 usuario_bp.route('/bienvenida', methods=['GET', 'POST'])(UsuarioController.bienvenida)
 usuario_bp.route('/login', methods=['POST'])(UsuarioController.login)
-#usuario_bp.route('/profile', methods=['GET'])(UsuarioController.show_profile)
+usuario_bp.route('/profile', methods=['GET'])(UsuarioController.show_profile)
 usuario_bp.route('/logout', methods=['GET'])(UsuarioController.logout)
 usuario_bp.route('/', methods=['GET'])(UsuarioController.listar_usuarios)
 usuario_bp.route('/<int:id_user>', methods=['GET'])(UsuarioController.buscar_usuario)
