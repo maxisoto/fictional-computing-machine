@@ -16,20 +16,19 @@ class Servidor:
     def serialize(self):
         """Serialize object representation"""
         return {
-            "Servidor":{
                 "id_server": self.id_server,
                 "nombre": self.nombre,
                 "descripcion": self.descripcion,
                 "f_creacion": self.f_creacion,
                 "icono": self.icono,
                 "activo": self.activo          
-            },
         }
     @classmethod
     def get_servers_activos(cls):
         query = """SELECT id_server, nombre, descripcion, f_creacion,
         activo, icono 
-        FROM grupo11.servidor"""
+        FROM grupo11.servidor
+        WHERE servidor.activo = 1"""
         
         results = DatabaseConnection.fetch_all(query)
         servidores = []
@@ -55,7 +54,7 @@ class Servidor:
         params = id_user,
         results = DatabaseConnection.fetch_all(query, params=params)
         servidores = []
-        if results is not None:
+        if result is not None:
             for result in results:
                 servidores.append(Servidor(
                     id_server = result[0],
@@ -72,11 +71,11 @@ class Servidor:
             
 
     @classmethod
-    def buscar_serv_nombre(cls,server):
+    def buscar_serv_id(cls,id_server):
         query = """SELECT id_server, nombre, descripcion, f_creacion,
         activo, icono 
-        FROM grupo11.servidor WHERE nombre = %s"""
-        params = server.nombre,
+        FROM grupo11.servidor WHERE id_server = %s"""
+        params = id_server,
         result = DatabaseConnection.fetch_one(query, params=params)
 
         if result is not None:

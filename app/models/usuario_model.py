@@ -19,7 +19,6 @@ class Usuario:
     def serialize(self):
         """Serialize object representation"""
         return {
-            "Usuario":{
                 "id_user": self.id_user,
                 "nombre": self.nombre,
                 "apellido": self.apellido,
@@ -29,9 +28,6 @@ class Usuario:
                 "f_nac": self.f_nac,
                 "preg_secret": self.preg_secret,
                 "respuesta": self.respuesta
-
-            },
-            
         }
     
     @classmethod
@@ -77,8 +73,8 @@ class Usuario:
 
         query = """SELECT id_user, nombre, apellido, email,
         user, password, f_nac, preg_secret, respuesta 
-        FROM grupo11.usuarios WHERE id_user = %s"""
-        params = user.id_user,
+        FROM grupo11.usuarios WHERE user like %s"""
+        params = user.user,
         result = DatabaseConnection.fetch_one(query, params=params)
 
         if result is not None:

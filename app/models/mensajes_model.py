@@ -15,14 +15,12 @@ class Mensaje:
     def serialize(self):
         """Serialize object representation"""
         return {
-            "Mesaje":{
                 "id_mensaje": self.id_mensaje,
                 "cuerpo": self.cuerpo,
                 "f_envio": self.f_envio,
                 "id_user": self.id_user,
                 "id_canal": self.id_canal,
-                "visible": self.visible
-            },         
+                "visible": self.visible        
         }
 
     @classmethod
